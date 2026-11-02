@@ -46,6 +46,40 @@ internal class Program
                         Console.WriteLine(list.ToStringBackward());
                     }
                     break;
+                case "4":
+                    if (list.IsEmpty)
+                    {
+                        Console.WriteLine("The list is empty.");
+                    }
+                    else
+                    {
+                        list.SortDescending();
+                        Console.WriteLine("List sorted descending.");
+                    }
+                    break;
+                case "5":
+                    if (list.IsEmpty)
+                    {
+                        Console.WriteLine("The list is empty.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Mode(s): " + string.Join(", ", list.GetModes()));
+                    }
+                    break;
+                case "6":
+                    if (list.IsEmpty)
+                    {
+                        Console.WriteLine("The list is empty.");
+                    }
+                    else
+                    {
+                        foreach (var occurrence in list.GetOccurrences())
+                        {
+                            Console.WriteLine(occurrence.Value + " " + new string('*', occurrence.Count));
+                        }
+                    }
+                    break;
                 case "0":
                     Console.WriteLine("Goodbye.");
                     break;
@@ -63,6 +97,9 @@ internal class Program
         Console.WriteLine("1. Add");
         Console.WriteLine("2. Show forward");
         Console.WriteLine("3. Show backward");
+        Console.WriteLine("4. Sort descending");
+        Console.WriteLine("5. Show mode(s)");
+        Console.WriteLine("6. Show graph");
         Console.WriteLine("0. Exit");
         Console.Write("Option: ");
     }
