@@ -15,6 +15,7 @@ internal class Program
             switch (option)
             {
                 case "1":
+                {
                     Console.Write("Value: ");
                     if (TryReadValue(out var value))
                     {
@@ -26,6 +27,7 @@ internal class Program
                         Console.WriteLine("Invalid value.");
                     }
                     break;
+                }
                 case "2":
                     if (list.IsEmpty)
                     {
@@ -80,6 +82,61 @@ internal class Program
                         }
                     }
                     break;
+                case "7":
+                {
+                    Console.Write("Value: ");
+                    if (!TryReadValue(out var value))
+                    {
+                        Console.WriteLine("Invalid value.");
+                    }
+                    else if (list.Exists(value))
+                    {
+                        Console.WriteLine("The value exists.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("The value does not exist.");
+                    }
+                    break;
+                }
+                case "8":
+                {
+                    Console.Write("Value: ");
+                    if (!TryReadValue(out var value))
+                    {
+                        Console.WriteLine("Invalid value.");
+                    }
+                    else if (list.RemoveFirst(value))
+                    {
+                        Console.WriteLine("Value removed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Value not found.");
+                    }
+                    break;
+                }
+                case "9":
+                {
+                    Console.Write("Value: ");
+                    if (!TryReadValue(out var value))
+                    {
+                        Console.WriteLine("Invalid value.");
+                    }
+                    else
+                    {
+                        int removed = list.RemoveAll(value);
+                        if (removed > 0)
+                        {
+                            Console.WriteLine(removed + " occurrence(s) removed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Value not found.");
+                        }
+                    }
+                    break;
+                }
                 case "0":
                     Console.WriteLine("Goodbye.");
                     break;
@@ -100,6 +157,9 @@ internal class Program
         Console.WriteLine("4. Sort descending");
         Console.WriteLine("5. Show mode(s)");
         Console.WriteLine("6. Show graph");
+        Console.WriteLine("7. Exists");
+        Console.WriteLine("8. Remove one occurrence");
+        Console.WriteLine("9. Remove all occurrences");
         Console.WriteLine("0. Exit");
         Console.Write("Option: ");
     }
