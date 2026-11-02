@@ -89,6 +89,29 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         return result;
     }
 
+    public void SortDescending()
+    {
+        if (isDescending)
+        {
+            return;
+        }
+
+        Node<T>? current = head;
+        while (current != null)
+        {
+            // swap both links of every node
+            Node<T>? next = current.Next;
+            current.Next = current.Previous;
+            current.Previous = next;
+            current = next;
+        }
+
+        Node<T>? oldHead = head;
+        head = tail;
+        tail = oldHead;
+        isDescending = true;
+    }
+
     // strict compare leaves equal values behind the ones already there
     private bool GoesBefore(T value, T existing)
     {
