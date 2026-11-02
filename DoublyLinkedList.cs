@@ -112,6 +112,62 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         isDescending = true;
     }
 
+    public List<(T Value, int Count)> GetOccurrences()
+    {
+        List<(T Value, int Count)> occurrences = new List<(T Value, int Count)>();
+
+        if (head == null)
+        {
+            return occurrences;
+        }
+
+        T value = head.Value;
+        int count = 0;
+        Node<T>? current = head;
+
+        while (current != null)
+        {
+            // equal values sit next to each other, a new value closes the group
+            if (current.Value.CompareTo(value) != 0)
+            {
+                occurrences.Add((value, count));
+                value = current.Value;
+                count = 0;
+            }
+
+            count++;
+            current = current.Next;
+        }
+
+        occurrences.Add((value, count));
+        return occurrences;
+    }
+
+    public List<T> GetModes()
+    {
+        List<(T Value, int Count)> occurrences = GetOccurrences();
+        int maxCount = 0;
+
+        foreach (var occurrence in occurrences)
+        {
+            if (occurrence.Count > maxCount)
+            {
+                maxCount = occurrence.Count;
+            }
+        }
+
+        List<T> modes = new List<T>();
+        foreach (var occurrence in occurrences)
+        {
+            if (occurrence.Count == maxCount)
+            {
+                modes.Add(occurrence.Value);
+            }
+        }
+
+        return modes;
+    }
+
     // strict compare leaves equal values behind the ones already there
     private bool GoesBefore(T value, T existing)
     {
