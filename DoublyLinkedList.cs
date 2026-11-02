@@ -168,6 +168,85 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         return modes;
     }
 
+    public bool Exists(T value)
+    {
+        Node<T>? current = head;
+
+        while (current != null)
+        {
+            if (current.Value.CompareTo(value) == 0)
+            {
+                return true;
+            }
+
+            current = current.Next;
+        }
+
+        return false;
+    }
+
+    public bool RemoveFirst(T value)
+    {
+        Node<T>? current = head;
+
+        while (current != null)
+        {
+            if (current.Value.CompareTo(value) == 0)
+            {
+                Unlink(current);
+                return true;
+            }
+
+            current = current.Next;
+        }
+
+        return false;
+    }
+
+    public int RemoveAll(T value)
+    {
+        int removed = 0;
+        Node<T>? current = head;
+
+        while (current != null)
+        {
+            Node<T>? next = current.Next;
+
+            if (current.Value.CompareTo(value) == 0)
+            {
+                Unlink(current);
+                removed++;
+            }
+
+            current = next;
+        }
+
+        return removed;
+    }
+
+    private void Unlink(Node<T> node)
+    {
+        if (node.Previous == null)
+        {
+            head = node.Next;
+        }
+        else
+        {
+            node.Previous.Next = node.Next;
+        }
+
+        if (node.Next == null)
+        {
+            tail = node.Previous;
+        }
+        else
+        {
+            node.Next.Previous = node.Previous;
+        }
+
+        Count--;
+    }
+
     // strict compare leaves equal values behind the ones already there
     private bool GoesBefore(T value, T existing)
     {
