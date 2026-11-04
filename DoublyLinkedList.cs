@@ -224,6 +224,14 @@ public class DoublyLinkedList<T> where T : IComparable<T>
         return removed;
     }
 
+    public void ClearList()
+    {
+        head = null;
+        tail = null;
+        Count = 0;
+        isDescending = false;
+    }
+
     private void Unlink(Node<T> node)
     {
         if (node.Previous == null)
