@@ -138,6 +138,17 @@ internal class Program
                         }
                         break;
                     }
+                case "10":
+                    if (list.IsEmpty)
+                    {
+                        Console.WriteLine("The list is empty.");
+                    }
+                    else
+                    {
+                        list.ClearList();
+                        Console.WriteLine("List cleared.");
+                    }
+                    break;
                 case "0":
                     Console.WriteLine("Goodbye.");
                     break;
@@ -161,6 +172,7 @@ internal class Program
         Console.WriteLine("7. Exists");
         Console.WriteLine("8. Remove one occurrence");
         Console.WriteLine("9. Remove all occurrences");
+        Console.WriteLine("10. Clear list");
         Console.WriteLine("0. Exit");
         Console.Write("Option: ");
     }
