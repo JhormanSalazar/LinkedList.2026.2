@@ -4,8 +4,7 @@ internal class Program
 {
     static void Main()
     {
-        var list = new DoublyLinkedList<int>();
-        //var list = new DoublyLinkedList<string>();
+        var list = new DoublyLinkedList<string>();
         string option;
 
         do
@@ -176,7 +175,5 @@ internal class Program
         Console.WriteLine("0. Exit");
         Console.Write("Option: ");
     }
-
-    static bool TryReadValue(out int value) => int.TryParse(Console.ReadLine(), out value);
-    //static bool TryReadValue(out string value) { value = Console.ReadLine() ?? ""; return value != ""; }
+    static bool TryReadValue(out string value) { value = Console.ReadLine() ?? ""; return value != ""; }
 }
