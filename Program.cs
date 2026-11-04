@@ -5,6 +5,7 @@ internal class Program
     static void Main()
     {
         var list = new DoublyLinkedList<int>();
+        //var list = new DoublyLinkedList<string>();
         string option;
 
         do
@@ -15,19 +16,19 @@ internal class Program
             switch (option)
             {
                 case "1":
-                {
-                    Console.Write("Value: ");
-                    if (TryReadValue(out var value))
                     {
-                        list.Add(value);
-                        Console.WriteLine("Value added.");
+                        Console.Write("Value: ");
+                        if (TryReadValue(out var value))
+                        {
+                            list.Add(value);
+                            Console.WriteLine("Value added.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid value.");
+                        }
+                        break;
                     }
-                    else
-                    {
-                        Console.WriteLine("Invalid value.");
-                    }
-                    break;
-                }
                 case "2":
                     if (list.IsEmpty)
                     {
@@ -83,60 +84,60 @@ internal class Program
                     }
                     break;
                 case "7":
-                {
-                    Console.Write("Value: ");
-                    if (!TryReadValue(out var value))
                     {
-                        Console.WriteLine("Invalid value.");
-                    }
-                    else if (list.Exists(value))
-                    {
-                        Console.WriteLine("The value exists.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("The value does not exist.");
-                    }
-                    break;
-                }
-                case "8":
-                {
-                    Console.Write("Value: ");
-                    if (!TryReadValue(out var value))
-                    {
-                        Console.WriteLine("Invalid value.");
-                    }
-                    else if (list.RemoveFirst(value))
-                    {
-                        Console.WriteLine("Value removed.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Value not found.");
-                    }
-                    break;
-                }
-                case "9":
-                {
-                    Console.Write("Value: ");
-                    if (!TryReadValue(out var value))
-                    {
-                        Console.WriteLine("Invalid value.");
-                    }
-                    else
-                    {
-                        int removed = list.RemoveAll(value);
-                        if (removed > 0)
+                        Console.Write("Value: ");
+                        if (!TryReadValue(out var value))
                         {
-                            Console.WriteLine(removed + " occurrence(s) removed.");
+                            Console.WriteLine("Invalid value.");
+                        }
+                        else if (list.Exists(value))
+                        {
+                            Console.WriteLine("The value exists.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("The value does not exist.");
+                        }
+                        break;
+                    }
+                case "8":
+                    {
+                        Console.Write("Value: ");
+                        if (!TryReadValue(out var value))
+                        {
+                            Console.WriteLine("Invalid value.");
+                        }
+                        else if (list.RemoveFirst(value))
+                        {
+                            Console.WriteLine("Value removed.");
                         }
                         else
                         {
                             Console.WriteLine("Value not found.");
                         }
+                        break;
                     }
-                    break;
-                }
+                case "9":
+                    {
+                        Console.Write("Value: ");
+                        if (!TryReadValue(out var value))
+                        {
+                            Console.WriteLine("Invalid value.");
+                        }
+                        else
+                        {
+                            int removed = list.RemoveAll(value);
+                            if (removed > 0)
+                            {
+                                Console.WriteLine(removed + " occurrence(s) removed.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Value not found.");
+                            }
+                        }
+                        break;
+                    }
                 case "0":
                     Console.WriteLine("Goodbye.");
                     break;
@@ -165,4 +166,5 @@ internal class Program
     }
 
     static bool TryReadValue(out int value) => int.TryParse(Console.ReadLine(), out value);
+    //static bool TryReadValue(out string value) { value = Console.ReadLine() ?? ""; return value != ""; }
 }
